@@ -1,28 +1,43 @@
-# res://Scripts/FSM/State.gd
 extends Node
-class_name State # 註冊為全局類別，這樣其他腳本就能繼承它
+class_name State
 
-# 定義一個訊號，當狀態想要切換時呼叫
-# 參數：發送訊號的狀態本身, 想切換過去的狀態節點名稱 (String)
-signal transitioned(state, new_state_name)
+var core: Core
+var is_complete: bool = false
 
-# 讓狀態可以輕易取得 Boss 本身 (由 StateMachine 灌入)
-var boss: CharacterBody2D
+# 對應你的 time => Time.time - startTime
+var start_time: float = 0.0
+var time: float:
+	get: return (Time.get_ticks_msec() / 1000.0) - start_time
 
-# --- 以下三個是留給新手填寫的「空抽屜」 ---
+var machine: StateMachine
+var parent: StateMachine
 
-# 當剛進入這個狀態時，會執行一次 (例如：播放動畫、重置計時器)
-func enter():
-	pass
+func set_core(_core: Core):
+	machine = StateMachine.new() # 初始化自己的子狀態機
+	core = _core
 
-# 每一幀都會執行 (處理邏輯、數學、按鍵輸入)
-func update(_delta: float):
-	pass
+func initialize(_parent: StateMachine):
+	parent = _parent
+	is_complete = false
+	start_time = Time.get_ticks_msec() / 1000.0
 
-# 每一物理幀都會執行 (處理移動、碰撞)
-func physics_update(_delta: float):
-	pass
+# --- 虛擬函式 ---
+func enter(): pass
+func do_update(_delta: float): pass
+func fixed_do(_delta: float): pass
+func exit(): pass
 
-# 當要離開這個狀態時，會執行一次 (例如：清除特效)
-func exit():
-	pass
+# --- 階層式分發 (對應 DoBranch / FixedDoBranch) ---
+func do_branch(delta: float):
+	do_update(delta)
+	if machine and machine.state:
+		machine.state.do_branch(delta)
+
+func fixed_do_branch(delta: float):
+	fixed_do(delta)
+	if machine and machine.state:
+		machine.state.fixed_do_branch(delta)
+
+# 給子狀態切換用的捷徑
+func set_state(new_state: State, force_reset: bool = false):
+	machine.set_state(new_state, force_reset)
