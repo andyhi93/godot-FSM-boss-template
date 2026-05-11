@@ -2,13 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://dy1oqeyan4vbj" path="res://icon.svg" id="1_0154r"]
 [ext_resource type="Script" uid="uid://cb6te6sbpig3e" path="res://Scripts/Boss/boss.gd" id="1_wwfse"]
+[ext_resource type="Script" uid="uid://b8bw3wd84i1w2" path="res://Scripts/Boss/Shooter.gd" id="3_qtle2"]
 [ext_resource type="Script" uid="uid://duw6eu3lt4g7m" path="res://Scripts/FSM/IdleState.gd" id="4_ukjjc"]
+[ext_resource type="PackedScene" uid="uid://b1ffqx8v7b1dc" path="res://Scenes/bullet.tscn" id="4_yq25j"]
 [ext_resource type="Script" uid="uid://25f4q8q40yat" path="res://Scripts/FSM/DashState.gd" id="5_n725y"]
+[ext_resource type="Script" uid="uid://dv1h1asx1c064" path="res://Scripts/FSM/ShootState.gd" id="7_odcco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwfse"]
 size = Vector2(250, 250)
 
-[node name="Boss" type="CharacterBody2D" unique_id=1474349574]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtle2"]
+radius = 150.0
+
+[node name="Boss" type="CharacterBody2D" unique_id=1474349574 groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_wwfse")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1095612588]
@@ -16,10 +24,17 @@ modulate = Color(1, 0, 0, 1)
 scale = Vector2(2, 2)
 texture = ExtResource("1_0154r")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481567195]
+[node name="Shooter" type="Marker2D" parent="." unique_id=909482737]
+script = ExtResource("3_qtle2")
+bullet_scene = ExtResource("4_yq25j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=650533861]
 shape = SubResource("RectangleShape2D_wwfse")
+
+[node name="DamageAura" type="Area2D" parent="." unique_id=421544507]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageAura" unique_id=1025862457]
+shape = SubResource("CircleShape2D_qtle2")
 
 [node name="States" type="Node2D" parent="." unique_id=658789272]
 
@@ -28,3 +43,8 @@ script = ExtResource("4_ukjjc")
 
 [node name="Dash" type="Node2D" parent="States" unique_id=197187039]
 script = ExtResource("5_n725y")
+
+[node name="Shoot" type="Node2D" parent="States" unique_id=1472722649]
+script = ExtResource("7_odcco")
+
+[connection signal="body_entered" from="DamageAura" to="." method="_on_damage_aura_body_entered"]

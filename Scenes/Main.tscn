@@ -2,11 +2,50 @@
 
 [ext_resource type="PackedScene" uid="uid://c7upmmrk4j7so" path="res://Scenes/boss.tscn" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://cmkpru6ru31cg" path="res://Scenes/player.tscn" id="2_kln2b"]
+[ext_resource type="Script" uid="uid://cdhpo2pyxqdss" path="res://Scripts/UI.gd" id="3_kln2b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgh2o"]
+bg_color = Color(3.2488256e-07, 0.42240003, 6.738305e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
+bg_color = Color(0.42961916, 7.70092e-07, 3.6098064e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw32o"]
+bg_color = Color(1, 0, 0, 1)
 
 [node name="Main" type="Node2D" unique_id=2003695969]
+
+[node name="Player" parent="." unique_id=1932012002 instance=ExtResource("2_kln2b")]
+position = Vector2(715, 356)
 
 [node name="Boss" parent="." unique_id=1474349574 instance=ExtResource("1_idj7w")]
 position = Vector2(376, 103)
 
-[node name="Player" parent="." unique_id=1932012002 instance=ExtResource("2_kln2b")]
-position = Vector2(376, 103)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1577881865 node_paths=PackedStringArray("player", "boss")]
+script = ExtResource("3_kln2b")
+player = NodePath("../Player")
+boss = NodePath("../Boss")
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=954360226]
+offset_top = 30.0
+offset_right = 200.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rgh2o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pbw6q")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=271212982]
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_v1gob")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jw32o")
+value = 100.0
+show_percentage = false

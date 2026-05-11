@@ -5,9 +5,10 @@ class_name Core
 @export var max_hp: int = 100
 var current_hp: int
 var is_dead: bool = false
+var is_invincible: bool = false
 
 @onready var rb: CharacterBody2D = self 
-@onready var animator: AnimationPlayer = $AnimationPlayer 
+@onready var animator: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
 
 var machine: StateMachine
 var state: State:
@@ -51,7 +52,7 @@ func select_state(): pass
 
 # --- 戰鬥基礎 ---
 func take_damage(damage: int):
-	if is_dead: return
+	if is_dead or is_invincible: return
 	current_hp = clampi(current_hp - damage, 0, max_hp)
 	if current_hp <= 0:
 		die()
