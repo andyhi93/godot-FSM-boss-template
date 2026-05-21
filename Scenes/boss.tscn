@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://duw6eu3lt4g7m" path="res://Scripts/FSM/IdleState.gd" id="4_ukjjc"]
 [ext_resource type="PackedScene" uid="uid://b1ffqx8v7b1dc" path="res://Scenes/bullet.tscn" id="4_yq25j"]
 [ext_resource type="Script" uid="uid://25f4q8q40yat" path="res://Scripts/FSM/DashState.gd" id="5_n725y"]
-[ext_resource type="Script" uid="uid://dv1h1asx1c064" path="res://Scripts/FSM/ShootState.gd" id="7_odcco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwfse"]
 size = Vector2(250, 250)
@@ -43,8 +42,5 @@ script = ExtResource("4_ukjjc")
 
 [node name="Dash" type="Node2D" parent="States" unique_id=197187039]
 script = ExtResource("5_n725y")
-
-[node name="Shoot" type="Node2D" parent="States" unique_id=1472722649]
-script = ExtResource("7_odcco")
 
 [connection signal="body_entered" from="DamageAura" to="." method="_on_damage_aura_body_entered"]

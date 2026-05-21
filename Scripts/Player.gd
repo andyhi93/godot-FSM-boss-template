@@ -65,12 +65,10 @@ func select_state():
 		# 如果正在移動，且目前不是 walk 狀態，就切換過去
 		if state != walk_state:
 			set_state(walk_state)
-			print("🏃 玩家切換狀態 -> Walk") # 幫助學員在 Console 看清狀態流動
 	else:
 		# 如果沒有移動，且目前不是 idle 狀態，就切換過去
 		if state != idle_state:
 			set_state(idle_state)
-			print("🧍 玩家切換狀態 -> Idle") 
 
 func shoot():
 	# 💡 防呆報錯 3：新手最常忘記把子彈場景拖曳到 Inspector！
