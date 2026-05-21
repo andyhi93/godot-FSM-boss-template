@@ -18,6 +18,11 @@ func _ready():
 	current_hp = max_hp
 	set_up_instances()
 	init_behavior() # 留給子類別 (Boss/Player) 實作
+	
+	if is_in_group("Player"):
+		UIManager.update_player_hp(current_hp, max_hp)
+	elif is_in_group("Enemy"):
+		UIManager.update_boss_hp(current_hp, max_hp)
 
 func set_up_instances():
 	machine = StateMachine.new()
@@ -54,8 +59,21 @@ func select_state(): pass
 func take_damage(damage: int):
 	if is_dead or is_invincible: return
 	current_hp = clampi(current_hp - damage, 0, max_hp)
+	
+	if is_in_group("Player"):
+		UIManager.update_player_hp(current_hp, max_hp)
+	elif is_in_group("Enemy"):
+		UIManager.update_boss_hp(current_hp, max_hp)
+	
 	if current_hp <= 0:
 		die()
 
 func die():
 	is_dead = true
+	
+	if is_in_group("Player"):
+		UIManager.show_result("Game Over", false)
+	elif is_in_group("Enemy"):
+		UIManager.show_result("You Win!", false)
+	
+	queue_free() # 原本的刪除節點

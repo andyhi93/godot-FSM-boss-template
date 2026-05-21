@@ -76,8 +76,8 @@ func _on_damage_aura_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		# 檢查玩家身上有沒有受傷的函式
 		if body.has_method("take_damage"):
-			body.take_damage(10) # 衝撞傷害，一次扣 20 滴血！
-			print("💥 Boss 撞擊！玩家受到 10 點傷害！")
+			body.take_damage(2) # 衝撞傷害，一次扣 20 滴血！
+			print("💥 Boss 撞擊！玩家受到 2 點傷害！")
 func die():
 	super.die()
 	print("💀 Boss死亡！")

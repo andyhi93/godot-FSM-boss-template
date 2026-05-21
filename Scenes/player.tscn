@@ -166,6 +166,7 @@ size = Vector2(130, 130)
 collision_mask = 0
 script = ExtResource("1_cvnsp")
 bullet_scene = ExtResource("2_6t5aa")
+max_hp = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641500265]
 scale = Vector2(4, 4)

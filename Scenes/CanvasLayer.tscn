@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://bxb8wh1o6hpqj"]
+
+[ext_resource type="Script" uid="uid://cdhpo2pyxqdss" path="res://Scripts/UIManager.gd" id="1_1qbbr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5wvn"]
+bg_color = Color(3.2488256e-07, 0.42240003, 6.738305e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ylis"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7vou"]
+bg_color = Color(0.42961916, 7.70092e-07, 3.6098064e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydkpc"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1qbbr"]
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qbbr"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.5662982, 0.5662982, 0.56629807, 0.5019608)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="UIManager" type="CanvasLayer" unique_id=1145854838]
+process_mode = 3
+script = ExtResource("1_1qbbr")
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="." unique_id=36077659]
+offset_top = 30.0
+offset_right = 200.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_u5wvn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ylis")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="BossHealthBar" type="ProgressBar" parent="." unique_id=374703393]
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_l7vou")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ydkpc")
+value = 100.0
+show_percentage = false
+
+[node name="ResultPanel" type="Panel" parent="." unique_id=795407088]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -125.0
+offset_right = 200.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 125)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResultPanel" unique_id=1999194019]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -76.5
+offset_right = 130.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ResultLabel" type="Label" parent="ResultPanel/VBoxContainer" unique_id=1335487328]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_1qbbr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="ResultPanel/VBoxContainer" unique_id=2013509856]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_1qbbr")
+text = "Restart"
+
+[node name="ResumeButton" type="Button" parent="ResultPanel/VBoxContainer" unique_id=1791839480]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_1qbbr")
+text = "Resume"
+
+[node name="ExitButton" type="Button" parent="ResultPanel/VBoxContainer" unique_id=167439850]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_1qbbr")
+text = "Exit"
+
+[connection signal="pressed" from="ResultPanel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ResultPanel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ResultPanel/VBoxContainer/ExitButton" to="." method="_on_exit_butto_pressed"]
