@@ -15,8 +15,6 @@ func _physics_process(delta):
 	if is_dead: return
 	
 	# --- 🏃 物理行為區 ---
-	# TODO: 請根據目前的狀態 (state) 來設定 velocity (速度)
-	# 例如：Idle 時速度為 0，Dash 時根據 dash_direction 移動
 	
 	super._physics_process(delta) 
 
