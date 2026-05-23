@@ -42,5 +42,6 @@ script = ExtResource("4_ukjjc")
 
 [node name="Dash" type="Node2D" parent="States" unique_id=197187039]
 script = ExtResource("5_n725y")
+speed = 1600.0
 
 [connection signal="body_entered" from="DamageAura" to="." method="_on_damage_aura_body_entered"]
