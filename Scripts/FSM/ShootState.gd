@@ -9,7 +9,7 @@ func enter():
 
 func fixed_do(_delta: float):
 	# 節奏設計：蓄力 0.5 秒後瞬間開火
-	if time > 0.5 and not has_fired:
+	if time > 0.2 and not has_fired:
 		# 呼叫大腦去扣扳機
 		if core.has_method("execute_ring_attack"):
 			core.execute_ring_attack()
