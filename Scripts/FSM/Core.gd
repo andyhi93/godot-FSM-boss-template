@@ -14,6 +14,9 @@ var machine: StateMachine
 var state: State:
 	get: return machine.state if machine else null
 
+@export var show_state_debug: bool = true
+var debug_font: Font = ThemeDB.fallback_font
+
 func _ready():
 	current_hp = max_hp
 	set_up_instances()
@@ -35,17 +38,24 @@ func set_state(new_state: State, force_reset: bool = false):
 	machine.set_state(new_state, force_reset)
 
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
+		
 	if is_dead: return
 	
-	# 對應你的: if (state.isComplete) SelectState();
 	if state and state.is_complete:
 		select_state()
+		queue_redraw()
 		
 	if machine and machine.state:
 		machine.state.do_branch(delta)
 
 func _physics_process(delta):
+	if Engine.is_editor_hint():
+		return
+		
 	if is_dead: return
+	
 	if machine and machine.state:
 		machine.state.fixed_do_branch(delta)
 	
@@ -77,3 +87,36 @@ func die():
 		UIManager.show_result("You Win!", false)
 	
 	queue_free() # 原本的刪除節點
+func _draw():
+	if not show_state_debug:
+		return
+	
+	if machine == null or machine.state == null:
+		return
+
+	# ✅ 拿到所有巢狀 State
+	var states: Array = machine.get_actives_state_branch()
+
+	if states.is_empty():
+		return
+
+	# ✅ 轉字串
+	var names: Array[String] = []
+	for s in states:
+		names.append(s.name)
+
+	var text := "States: " + " > ".join(names)
+
+	# ✅ 顯示位置（角色頭上）
+	var pos := Vector2(0, -120)
+
+	draw_string(
+		debug_font,
+		pos,
+		text,
+		HORIZONTAL_ALIGNMENT_CENTER,
+		-1,
+		16,
+		Color.WHITE
+	)
+	

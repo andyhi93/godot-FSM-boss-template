@@ -15,4 +15,5 @@ func do_update(_delta):
 		
 	# 收招硬直：揮刀後再停留 0.5 秒 (總共 1.0 秒)，才結束這個狀態
 	if time > 1.0:
+		core.start_cd("melee")
 		is_complete = true

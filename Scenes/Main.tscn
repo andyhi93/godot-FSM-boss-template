@@ -10,4 +10,5 @@ position = Vector2(715, 356)
 
 [node name="Boss" parent="." unique_id=1474349574 instance=ExtResource("1_idj7w")]
 position = Vector2(376, 103)
-max_hp = null
+close_mid_range = 350.0
+mid_far_range = 800.0
