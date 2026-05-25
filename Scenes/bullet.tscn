@@ -12,7 +12,7 @@ collision_mask = 3
 script = ExtResource("1_oduel")
 speed = 1000.0
 damage = 1
-lifespan = 10.0
+wobble_freq = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=627521792]
 scale = Vector2(0.2, 0.2)

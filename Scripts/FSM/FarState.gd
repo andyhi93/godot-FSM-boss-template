@@ -19,13 +19,17 @@ func pick_action():
 		elif randf() < 0.6:
 			set_state(core.dash_state) # 強迫接近
 		else:
-			is_complete = true
-			set_state(core.approach_state)
+			if machine.state == core.approach_state:
+				is_complete = true
+			else:
+				set_state(core.approach_state)
 	else:
 		# ✅ 一階 → 正常接近
 		
 		if core.is_skill_ready(dash_cd):
 			set_state(core.dash_state)
 		else:
-			is_complete = true
-			set_state(core.approach_state)
+			if machine.state == core.approach_state:
+				is_complete = true
+			else:
+				set_state(core.approach_state)

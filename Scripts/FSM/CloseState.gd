@@ -18,12 +18,16 @@ func pick_action():
 		if core.is_skill_ready(melee_cd) or randf() < 0.4:
 			set_state(core.melee_state)
 		else:
-			is_complete = true
-			set_state(core.idle_state)
+			if machine.state == core.retreat_state:
+				is_complete = true
+			else:
+				set_state(core.retreat_state)
 	else:
 		# 一階 → 比較保守
 		if core.is_skill_ready(melee_cd):
 			set_state(core.melee_state)
 		else:
-			is_complete = true
-			set_state(core.idle_state)
+			if machine.state == core.retreat_state:
+				is_complete = true
+			else:
+				set_state(core.retreat_state)

@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://25f4q8q40yat" path="res://Scripts/FSM/DashState.gd" id="5_n725y"]
 [ext_resource type="Script" uid="uid://b7fxbhbqicq28" path="res://Scripts/FSM/ApproachState.gd" id="7_6xjeg"]
 [ext_resource type="Script" uid="uid://dv1h1asx1c064" path="res://Scripts/FSM/ShootState.gd" id="7_odcco"]
+[ext_resource type="Script" uid="uid://dg5fygpnqcbur" path="res://Scripts/FSM/FlankState.gd" id="8_r0blv"]
+[ext_resource type="Script" uid="uid://tw1rm4vub6pt" path="res://Scripts/FSM/RetreatState.gd" id="9_42olf"]
 [ext_resource type="Script" uid="uid://dbxtjcjnb6028" path="res://Scripts/FSM/MeleeState.gd" id="9_odcco"]
 [ext_resource type="Script" uid="uid://bqwop25je61fb" path="res://Scripts/FSM/CloseState.gd" id="10_lel8w"]
 [ext_resource type="Script" uid="uid://b8h2go0ker0yj" path="res://Scripts/FSM/MidState.gd" id="11_6xjeg"]
@@ -20,6 +22,14 @@ size = Vector2(250, 250)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qtle2"]
 radius = 150.0
 
+[sub_resource type="Curve" id="Curve_42olf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19877675, 0), 0.0, 0.0, 0, 0, Vector2(0.78899086, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_hbq6j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.34862387, 0.15975618), 0.0, 0.0, 0, 0, Vector2(0.63302755, 0.99207324), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [node name="Boss" type="CharacterBody2D" unique_id=1474349574 groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 0
@@ -27,6 +37,11 @@ script = ExtResource("1_wwfse")
 slash_scene = ExtResource("2_yq25j")
 slash_offset = 150.0
 slash_scale = Vector2(10, 10)
+max_cooldowns = {
+"dash": 5.0,
+"melee": 4.0,
+"shoot": 6.0
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1095612588]
 modulate = Color(1, 0, 0, 1)
@@ -53,9 +68,22 @@ script = ExtResource("4_ukjjc")
 [node name="Approach" type="Node2D" parent="States" unique_id=1385450071]
 script = ExtResource("7_6xjeg")
 
+[node name="Flank" type="Node2D" parent="States" unique_id=1292054397]
+script = ExtResource("8_r0blv")
+flank_speed = 400.0
+
+[node name="Retreat" type="Node2D" parent="States" unique_id=205038594]
+script = ExtResource("9_42olf")
+retreat_duration = 1.0
+retreat_distance = 500.0
+retreat_curve = SubResource("Curve_42olf")
+
 [node name="Dash" type="Node2D" parent="States" unique_id=197187039]
 script = ExtResource("5_n725y")
-speed = 1200.0
+windup_time = 0.5
+dash_duration = 2.0
+overshoot_offset = 300.0
+dash_curve = SubResource("Curve_hbq6j")
 
 [node name="Shoot" type="Node2D" parent="States" unique_id=1472722649]
 script = ExtResource("7_odcco")

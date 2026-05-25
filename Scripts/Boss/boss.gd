@@ -10,9 +10,11 @@ class_name Boss
 #所有的狀態
 @onready var idle_state: State = $States/Idle
 @onready var approach_state: State = $States/Approach
+@onready var flank_state: State = $States/Flank
 @onready var dash_state: State = $States/Dash
 @onready var shoot_state: State = $States/Shoot 
 @onready var melee_state: State = $States/Melee
+@onready var retreat_state: State = $States/Retreat
 #決策
 @onready var close_state: State = $States/Close
 @onready var mid_state: State = $States/Mid
@@ -32,7 +34,7 @@ var distance_to_player: float = 0.0
 # ⏳ 擴充型冷卻系統 (Dictionary)
 @export var max_cooldowns: Dictionary = {
 	"dash": 5.0,
-	"melee": 4.0,
+	"melee": 2.0,
 	"shoot": 6.0
 }
 # ⏳ 內部計時器 (純粹用來倒數)
@@ -83,6 +85,7 @@ func select_state():
 	if idle_state == null or dash_state == null or shoot_state == null or melee_state == null:
 		print("有State未導入")
 		return
+	#print("bstate: ",state.name," complete: ",state.is_complete)
 		
 	if distance_to_player < close_mid_range:
 		set_state(close_state)
@@ -90,6 +93,7 @@ func select_state():
 		set_state(mid_state)
 	else:
 		set_state(far_state)
+	#print("astate: ",state.name," complete: ",state.is_complete)
 
 # --- ⚔️ 提供給 MeleeState 呼叫的近戰攻擊指令 ---
 func execute_melee_attack():
@@ -115,7 +119,6 @@ func execute_melee_attack():
 	slash.scale = slash_scale
 	
 	get_parent().add_child(slash) # 加在 Boss 的父節點(競技場)上，揮出後不會跟著 Boss 滑動
-
 	
 # --- 🔫 提供給 ShootState 呼叫的武器開火指令 ---
 func execute_ring_attack():
@@ -123,7 +126,6 @@ func execute_ring_attack():
 		shooter.fire_ring(12, 400.0)
 	else:
 		push_warning("⚠️ Boss 嘗試開火，但找不到 Shooter 節點！")
-
 
 # 當有實體(body)撞進 Boss 的傷害光環時觸發
 func _on_damage_aura_body_entered(body: Node2D) -> void:

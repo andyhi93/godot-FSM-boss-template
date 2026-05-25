@@ -20,13 +20,12 @@ func pick_action():
 			set_state(core.shoot_state) # 有機率硬開（壓力）
 		else:
 			is_complete = true
-			set_state(core.idle_state)
+			set_state(core.flank_state)
 	else:
 		# ✅ 一階 → 比較合理的攻擊節奏
 		
 		if core.is_skill_ready(shoot_cd):
 			set_state(core.shoot_state)
 		else:
-			#set_state(flank)
 			is_complete = true
-			set_state(core.idle_state)
+			set_state(core.flank_state)
