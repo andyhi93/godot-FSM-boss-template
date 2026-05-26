@@ -27,7 +27,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19877675, 0), 0.0, 0.0, 0, 0, 
 point_count = 4
 
 [sub_resource type="Curve" id="Curve_hbq6j"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.34862387, 0.15975618), 0.0, 0.0, 0, 0, Vector2(0.63302755, 0.99207324), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.37619048, 0.18490565), 0.0, 0.0, 0, 0, Vector2(0.7047619, 1), 4.301886, 4.301886, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [node name="Boss" type="CharacterBody2D" unique_id=1474349574 groups=["Enemy"]]

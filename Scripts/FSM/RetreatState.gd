@@ -39,4 +39,5 @@ func fixed_do(delta: float):
 		is_complete = true
 
 func exit():
+	super.exit()
 	core.velocity = Vector2.ZERO

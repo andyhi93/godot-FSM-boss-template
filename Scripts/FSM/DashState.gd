@@ -24,9 +24,9 @@ func enter():
 	# 進入狀態時先做第一次情報更新
 	_update_target_info_during_windup()
 	print("time: ",time)
+	print("Dash complete: ",is_complete)
 
 func fixed_do(delta: float):
-	
 	# ✅ 1. 前搖蓄力階段：每個物理幀都在瘋狂重新鎖定玩家的最新位置
 	if time < windup_time:
 		core.velocity = Vector2.ZERO
@@ -75,6 +75,8 @@ func fixed_do(delta: float):
 		is_complete = true
 
 func exit():
+	super.exit()
+	print("dash exit")
 	core.velocity = Vector2.ZERO
 
 # 抽出來的專用函式：蓄力期間專用，同時咬住方向與最新預期距離

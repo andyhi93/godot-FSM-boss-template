@@ -34,7 +34,7 @@ var distance_to_player: float = 0.0
 # ⏳ 擴充型冷卻系統 (Dictionary)
 @export var max_cooldowns: Dictionary = {
 	"dash": 5.0,
-	"melee": 2.0,
+	"melee": 20.0,
 	"shoot": 6.0
 }
 # ⏳ 內部計時器 (純粹用來倒數)

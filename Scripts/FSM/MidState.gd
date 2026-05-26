@@ -19,13 +19,17 @@ func pick_action():
 		elif randf() < 0.7:
 			set_state(core.shoot_state) # 有機率硬開（壓力）
 		else:
-			is_complete = true
-			set_state(core.flank_state)
+			if machine.state == core.flank_state:
+				is_complete = true
+			else:
+				set_state(core.flank_state)
 	else:
 		# ✅ 一階 → 比較合理的攻擊節奏
 		
 		if core.is_skill_ready(shoot_cd):
 			set_state(core.shoot_state)
 		else:
-			is_complete = true
-			set_state(core.flank_state)
+			if machine.state == core.flank_state:
+				is_complete = true
+			else:
+				set_state(core.flank_state)

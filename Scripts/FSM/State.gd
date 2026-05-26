@@ -26,7 +26,10 @@ func enter():
 	if(core.name=="Boss"): print(core.name+": "+name)
 func do_update(_delta: float): pass
 func fixed_do(_delta: float): pass
-func exit(): pass
+func exit():
+	if machine and machine.state:
+		machine.state.exit()
+		machine.state = null
 
 # --- 階層式分發 (對應 DoBranch / FixedDoBranch) ---
 func do_branch(delta: float):

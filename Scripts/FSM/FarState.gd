@@ -3,6 +3,7 @@ extends State
 func enter():
 	super.enter()
 	pick_action()
+	print("Far iscomplete: ",is_complete)
 
 func do_update(_delta: float):
 	if machine.state and machine.state.is_complete:

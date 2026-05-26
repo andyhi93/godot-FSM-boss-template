@@ -3,7 +3,7 @@ class_name StateMachine extends RefCounted
 var state: State
 
 func set_state(new_state: State, force_reset: bool = false):
-	if state != new_state or force_reset:
+	if state != new_state or force_reset or (state and state.is_complete):
 		if state:
 			state.exit()
 		state = new_state

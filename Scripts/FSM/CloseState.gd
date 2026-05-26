@@ -6,7 +6,7 @@ func enter():
 
 func do_update(_delta: float):
 	# 子狀態做完再選下一個
-	if machine.state.is_complete:
+	if machine.state and machine.state.is_complete:
 		pick_action()
 
 func pick_action():
