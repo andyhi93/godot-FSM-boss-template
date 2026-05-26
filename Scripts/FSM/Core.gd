@@ -18,6 +18,9 @@ var state: State:
 var debug_font: Font = ThemeDB.fallback_font
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
+		
 	current_hp = max_hp
 	set_up_instances()
 	init_behavior() # 留給子類別 (Boss/Player) 實作

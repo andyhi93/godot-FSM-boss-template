@@ -67,6 +67,7 @@ script = ExtResource("4_ukjjc")
 
 [node name="Approach" type="Node2D" parent="States" unique_id=1385450071]
 script = ExtResource("7_6xjeg")
+speed = 100.0
 
 [node name="Flank" type="Node2D" parent="States" unique_id=1292054397]
 script = ExtResource("8_r0blv")
