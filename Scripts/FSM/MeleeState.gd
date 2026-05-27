@@ -1,9 +1,9 @@
 extends State
 
-@export var windup_time: float = 0.5
-@export var stun_time: float = 1.0 
-@export var tracking_speed: float = 150.0 
-@export var attack_range: float = 120.0   
+@export var windup_time: float = 0.5#前搖時間
+@export var stun_time: float = 1.0 #硬直時間
+@export var tracking_speed: float = 150.0 #微調位置速度
+@export var attack_range: float = 120.0   #攻擊範圍
 
 var has_slashed: bool = false
 

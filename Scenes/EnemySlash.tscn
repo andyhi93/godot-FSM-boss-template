@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgp56bbcy0nse"]
 
 [ext_resource type="Texture2D" uid="uid://cblohpyugb3cj" path="res://Resources/Slash.png" id="1_toeeg"]
-[ext_resource type="Script" uid="uid://ekxqcgp1cgob" path="res://Scripts/Slash.gd" id="1_xvggk"]
+[ext_resource type="Script" path="res://Scripts/Slash.gd" id="1_xvggk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvggk"]
 atlas = ExtResource("1_toeeg")
@@ -111,7 +111,6 @@ animations = [{
 
 [node name="Slash" type="Area2D" unique_id=105324741]
 script = ExtResource("1_xvggk")
-damage = 1
 target_group = "Player"
 start_frame = 6
 end_frame = 8

@@ -79,21 +79,12 @@ func _physics_process(delta):
 
 # --- 🧠 大腦決策區：集中管理所有狀態切換 ---
 func select_state():
-	# 防禦性程式設計
-	
-	#改成自動抓States底下的子節點
-	if idle_state == null or dash_state == null or shoot_state == null or melee_state == null:
-		print("有State未導入")
-		return
-	#print("bstate: ",state.name," complete: ",state.is_complete)
-		
 	if distance_to_player < close_mid_range:
 		set_state(close_state)
 	elif distance_to_player < mid_far_range:
 		set_state(mid_state)
 	else:
 		set_state(far_state)
-	#print("astate: ",state.name," complete: ",state.is_complete)
 
 # --- ⚔️ 提供給 MeleeState 呼叫的近戰攻擊指令 ---
 func execute_melee_attack():

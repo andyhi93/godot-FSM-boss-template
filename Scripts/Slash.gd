@@ -1,7 +1,7 @@
 extends Area2D
 
 # --- 自定義屬性面板 ---
-@export var damage: int = 10
+@export var damage: int = 1
 @export var target_group: String = "Enemy" # 決定要打誰：填 "Enemy" 打敵人，填 "Player" 打玩家
 @export var start_frame: int = 1           # 傷害開始判定的動畫幀
 @export var end_frame: int = 2             # 傷害結束判定的動畫幀
