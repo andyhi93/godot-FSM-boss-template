@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dy1oqeyan4vbj" path="res://icon.svg" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://b1ffqx8v7b1dc" path="res://Scenes/bullet.tscn" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://cglihy1a82lpk" path="res://Resources/knight.png" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://dn28y6nwb3wsr" path="res://Scenes/PlayerSlash.tscn" id="3_x3wgy"]
 [ext_resource type="Script" uid="uid://cxvwsfm4deo6f" path="res://Scripts/FSM/CommonState.gd" id="5_fkybt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
@@ -21,6 +22,18 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
 atlas = ExtResource("3_6t5aa")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfarp"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6uwr"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(96, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
 atlas = ExtResource("3_6t5aa")
@@ -107,6 +120,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_x3wgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfarp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6uwr")
+}],
+"loop": false,
+"name": &"melee",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_gymyn")
 }, {
 "duration": 1.0,
@@ -167,13 +194,16 @@ collision_mask = 0
 script = ExtResource("1_cvnsp")
 bullet_scene = ExtResource("2_6t5aa")
 fire_rate = 0.25
+slash_scene = ExtResource("3_x3wgy")
+slash_scale = Vector2(2, 2)
+lock_movement_on_melee = true
 max_hp = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641500265]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_vfarp")
-animation = &"walk"
-frame_progress = 0.3561302
+animation = &"melee"
+frame_progress = 0.49195722
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1502965530]
 position_smoothing_enabled = true
@@ -200,3 +230,8 @@ anim_name = "idle"
 [node name="Walk" type="Node2D" parent="States" unique_id=2123025931]
 script = ExtResource("5_fkybt")
 anim_name = "walk"
+
+[node name="Melee" type="Node2D" parent="States" unique_id=830727341]
+script = ExtResource("5_fkybt")
+anim_name = "melee"
+is_cycle = false

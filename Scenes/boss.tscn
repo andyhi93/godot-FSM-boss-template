@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dy1oqeyan4vbj" path="res://icon.svg" id="1_0154r"]
 [ext_resource type="Script" uid="uid://cb6te6sbpig3e" path="res://Scripts/Boss/boss.gd" id="1_wwfse"]
-[ext_resource type="PackedScene" uid="uid://dgp56bbcy0nse" path="res://Scenes/Slash.tscn" id="2_yq25j"]
+[ext_resource type="PackedScene" uid="uid://dgp56bbcy0nse" path="res://Scenes/EnemySlash.tscn" id="2_yq25j"]
 [ext_resource type="Script" uid="uid://b8bw3wd84i1w2" path="res://Scripts/Boss/Shooter.gd" id="3_qtle2"]
 [ext_resource type="Script" uid="uid://duw6eu3lt4g7m" path="res://Scripts/FSM/IdleState.gd" id="4_ukjjc"]
 [ext_resource type="PackedScene" uid="uid://b1ffqx8v7b1dc" path="res://Scenes/bullet.tscn" id="4_yq25j"]

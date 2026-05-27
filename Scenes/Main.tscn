@@ -7,6 +7,7 @@
 
 [node name="Player" parent="." unique_id=1932012002 instance=ExtResource("2_kln2b")]
 position = Vector2(715, 356)
+slash_scale = Vector2(2, 4)
 
 [node name="Boss" parent="." unique_id=1474349574 instance=ExtResource("1_idj7w")]
 position = Vector2(376, 103)
