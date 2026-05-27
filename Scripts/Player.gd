@@ -58,7 +58,7 @@ func _process(delta):
 		isMeleeing = true
 		execute_melee_attack()
 		
-	if not isRolling and Input.is_action_just_pressed("ui_accept"): # 預設用空白鍵(Space)
+	if not isRolling and Input.is_action_just_pressed("roll"): # 預設用空白鍵(Space)
 		isRolling = true
 
 func _physics_process(delta):

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cglihy1a82lpk" path="res://Resources/knight.png" id="3_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://dn28y6nwb3wsr" path="res://Scenes/PlayerSlash.tscn" id="3_x3wgy"]
 [ext_resource type="Script" uid="uid://cxvwsfm4deo6f" path="res://Scripts/FSM/CommonState.gd" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://ccnhrp3g5msyd" path="res://Scripts/FSM/RollState.gd" id="7_3smsa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
 atlas = ExtResource("3_6t5aa")
@@ -34,6 +35,38 @@ region = Rect2(64, 160, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6uwr"]
 atlas = ExtResource("3_6t5aa")
 region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83xs0"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypfnu"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuaoq"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wohnl"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36dho"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh6i2"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv4vc"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gxox"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(224, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
 atlas = ExtResource("3_6t5aa")
@@ -134,6 +167,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_83xs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypfnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuaoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wohnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36dho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh6i2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv4vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gxox")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_gymyn")
 }, {
 "duration": 1.0,
@@ -196,14 +258,13 @@ bullet_scene = ExtResource("2_6t5aa")
 fire_rate = 0.25
 slash_scene = ExtResource("3_x3wgy")
 slash_scale = Vector2(2, 2)
-lock_movement_on_melee = true
 max_hp = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641500265]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_vfarp")
-animation = &"melee"
-frame_progress = 0.49195722
+animation = &"roll"
+frame_progress = 0.43600327
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1502965530]
 position_smoothing_enabled = true
@@ -234,4 +295,11 @@ anim_name = "walk"
 [node name="Melee" type="Node2D" parent="States" unique_id=830727341]
 script = ExtResource("5_fkybt")
 anim_name = "melee"
+is_cycle = false
+
+[node name="Roll" type="Node2D" parent="States" unique_id=241554968]
+script = ExtResource("7_3smsa")
+i_frame_start = 2
+i_frame_end = 6
+anim_name = "roll"
 is_cycle = false
