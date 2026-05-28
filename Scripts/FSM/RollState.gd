@@ -1,10 +1,9 @@
-# res://Scripts/FSM/RollState.gd
 extends CommonState
 class_name RollState
 
 @export var roll_speed: float = 600.0
-@export var i_frame_start: int = 1
-@export var i_frame_end: int = 4
+@export var i_frame_start: int = 2
+@export var i_frame_end: int = 6
 
 var roll_direction: Vector2 = Vector2.ZERO
 

@@ -13,13 +13,13 @@ func enter():
 		is_complete = true
 
 	if core.animator and anim_name != "":
-		# 💡 自動同步動畫的 Loop 設定到 SpriteFrames 資源中
+		# 自動同步動畫的 Loop 設定到 SpriteFrames 資源中
 		var sf = core.animator.sprite_frames
 		if sf and sf.has_animation(anim_name):
 			if sf.get_animation_loop(anim_name) != is_cycle:
 				sf.set_animation_loop(anim_name, is_cycle)
 		
-		# 💡 關鍵修復：只有在動畫不同，或是「非循環」狀態（如連招攻擊）時，才重置幀數
+		# 只有在動畫不同，或是「非循環」狀態（如連招攻擊）時，才重置幀數
 		if core.animator.animation != anim_name or not is_cycle:
 			core.animator.play(anim_name)
 			core.animator.set_frame_and_progress(0, 0.0) 

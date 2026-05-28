@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cmkpru6ru31cg"]
 
 [ext_resource type="Script" uid="uid://desdv4yi0fhsf" path="res://Scripts/Player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://dy1oqeyan4vbj" path="res://icon.svg" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://b1ffqx8v7b1dc" path="res://Scenes/bullet.tscn" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://cglihy1a82lpk" path="res://Resources/knight.png" id="3_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://dn28y6nwb3wsr" path="res://Scenes/PlayerSlash.tscn" id="3_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://ceao7yl4jy6cw" path="res://Resources/weapons.png" id="5_3smsa"]
 [ext_resource type="Script" uid="uid://cxvwsfm4deo6f" path="res://Scripts/FSM/CommonState.gd" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://ccnhrp3g5msyd" path="res://Scripts/FSM/RollState.gd" id="7_3smsa"]
 
@@ -257,7 +257,6 @@ script = ExtResource("1_cvnsp")
 bullet_scene = ExtResource("2_6t5aa")
 fire_rate = 0.25
 slash_scene = ExtResource("3_x3wgy")
-slash_scale = Vector2(2, 2)
 max_hp = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641500265]
@@ -275,9 +274,11 @@ shape = SubResource("RectangleShape2D_cvnsp")
 [node name="WeaponPivot" type="Node2D" parent="." unique_id=140887226]
 
 [node name="GunSprite" type="Sprite2D" parent="WeaponPivot" unique_id=345861902]
-position = Vector2(65.99999, 0)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_v0iea")
+position = Vector2(65, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("5_3smsa")
+region_enabled = true
+region_rect = Rect2(143, 115, 32, 13)
 
 [node name="Muzzle" type="Marker2D" parent="WeaponPivot/GunSprite" unique_id=1867277511]
 scale = Vector2(4.9999995, 4.9999995)
@@ -299,7 +300,5 @@ is_cycle = false
 
 [node name="Roll" type="Node2D" parent="States" unique_id=241554968]
 script = ExtResource("7_3smsa")
-i_frame_start = 2
-i_frame_end = 6
 anim_name = "roll"
 is_cycle = false

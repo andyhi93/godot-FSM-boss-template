@@ -42,6 +42,7 @@ max_cooldowns = {
 "melee": 4.0,
 "shoot": 6.0
 }
+debug_font_dst = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1095612588]
 modulate = Color(1, 0, 0, 1)

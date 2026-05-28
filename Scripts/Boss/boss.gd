@@ -37,7 +37,7 @@ var distance_to_player: float = 0.0
 	"melee": 20.0,
 	"shoot": 6.0
 }
-# ⏳ 內部計時器 (純粹用來倒數)
+# ⏳ 內部計時器 (用來倒數)
 var current_cooldowns: Dictionary = {}
 
 func init_behavior():
@@ -110,13 +110,6 @@ func execute_melee_attack():
 	slash.scale = slash_scale
 	
 	get_parent().add_child(slash) # 加在 Boss 的父節點(競技場)上，揮出後不會跟著 Boss 滑動
-	
-# --- 🔫 提供給 ShootState 呼叫的武器開火指令 ---
-func execute_ring_attack():
-	if shooter:
-		shooter.fire_ring(12, 400.0)
-	else:
-		push_warning("⚠️ Boss 嘗試開火，但找不到 Shooter 節點！")
 
 # 當有實體(body)撞進 Boss 的傷害光環時觸發
 func _on_damage_aura_body_entered(body: Node2D) -> void:
@@ -147,35 +140,8 @@ func die():
 
 # ===== ✅ Debug 繪圖 =====
 func _draw():
-	if not Engine.is_editor_hint() and show_state_debug:
-		if machine == null or machine.state == null:
-			return
-
-		# ✅ 拿到所有巢狀 State
-		var states: Array = machine.get_actives_state_branch()
-
-		if states.is_empty():
-			return
-
-		# ✅ 轉字串
-		var names: Array[String] = []
-		for s in states:
-			names.append(s.name)
-
-		var text := "States: " + " > ".join(names)
-
-		# ✅ 顯示位置（角色頭上）
-		var pos := Vector2(0, -150)
-
-		draw_string(
-			debug_font,
-			pos,
-			text,
-			HORIZONTAL_ALIGNMENT_CENTER,
-			-1,
-			16,
-			Color.WHITE
-		)
+	super._draw()
+	
 	if not show_debug_range or not Engine.is_editor_hint():
 		return
 

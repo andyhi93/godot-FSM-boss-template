@@ -1,10 +1,10 @@
 extends State
 
-@export var windup_time: float = 1.0
-@export var dash_duration: float = 0.5
-@export var minimum_dist: float = 800.0 
-@export var overshoot_offset: float = 150.0  
-@export var dash_curve: Curve  
+@export var windup_time: float = 1.0 #蓄力階段
+@export var dash_duration: float = 0.5 #衝刺時間長度
+@export var minimum_dist: float = 800.0  #最小衝刺距離
+@export var overshoot_offset: float = 150.0  #要超過玩家多少距離
+@export var dash_curve: Curve  #變速曲線
 
 var dash_direction: Vector2 = Vector2.ZERO
 var total_target_dist: float = 0.0
@@ -23,8 +23,6 @@ func enter():
 	
 	# 進入狀態時先做第一次情報更新
 	_update_target_info_during_windup()
-	#print("time: ",time)
-	#print("Dash complete: ",is_complete)
 
 func fixed_do(delta: float):
 	# ✅ 1. 前搖蓄力階段：每個物理幀都在瘋狂重新鎖定玩家的最新位置
@@ -70,13 +68,11 @@ func fixed_do(delta: float):
 			
 	# ✅ 3. 結束階段
 	else:
-		#print("time: ",time)
 		core.start_cd("dash")
 		is_complete = true
 
 func exit():
 	super.exit()
-	#print("dash exit")
 	core.velocity = Vector2.ZERO
 
 # 抽出來的專用函式：蓄力期間專用，同時咬住方向與最新預期距離

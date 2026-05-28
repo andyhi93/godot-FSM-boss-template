@@ -1,4 +1,3 @@
-# res://Scripts/FSM/Core.gd
 extends CharacterBody2D
 class_name Core
 
@@ -15,6 +14,7 @@ var state: State:
 	get: return machine.state if machine else null
 
 @export var show_state_debug: bool = true
+@export var debug_font_dst: Vector2 = Vector2(0,-120)
 var debug_font: Font = ThemeDB.fallback_font
 
 func _ready():
@@ -110,16 +110,12 @@ func _draw():
 
 	var text := "States: " + " > ".join(names)
 
-	# ✅ 顯示位置（角色頭上）
-	var pos := Vector2(0, -120)
-
 	draw_string(
 		debug_font,
-		pos,
+		debug_font_dst,
 		text,
 		HORIZONTAL_ALIGNMENT_CENTER,
 		-1,
 		16,
 		Color.WHITE
 	)
-	

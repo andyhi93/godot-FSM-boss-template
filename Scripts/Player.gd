@@ -14,18 +14,19 @@ var fire_timer: float = 0.0
 #近戰相關與硬直開關
 @export var slash_scene: PackedScene
 @export var slash_offset: float = 40.0
-@export var slash_scale: Vector2 = Vector2(1, 1)
+@export var slash_scale: Vector2 = Vector2(2, 2)
 @export var lock_movement_on_melee: bool = false # 決定揮刀時會不會定在原地
-@export var enable_hit_invincibility: bool = true # 是否開啟受傷後的暫時無敵
 var isMeleeing: bool = false
+
 var isRolling: bool = false
 var is_manual_invincible: bool = false # 用來區分「受傷無敵」與「翻滾無敵」
+@export var enable_hit_invincibility: bool = true # 是否開啟受傷後的暫時無敵
 
 # 抓取狀態積木 (確保節點名稱是小寫的 idle 和 walk)
 @onready var idle_state = $States/Idle
 @onready var walk_state = $States/Walk
 @onready var melee_state = $States/Melee
-@onready var roll_state = get_node_or_null("States/Roll")
+@onready var roll_state = $States/Roll
 
 func init_behavior():
 	# 💡 防呆報錯 1：檢查狀態節點有沒有掛對
@@ -75,6 +76,7 @@ func _physics_process(delta):
 		velocity = direction * move_speed
 	
 	# 肉體翻轉邏輯 (單純的視覺表現，留在這裡)
+	# 避免roll_state亂轉向
 	if animator and direction.x != 0 and state != roll_state:
 		animator.flip_h = direction.x < 0
 			
@@ -82,12 +84,8 @@ func _physics_process(delta):
 
 # --- 🧠 大腦決策區：集中管理所有狀態切換 ---
 func select_state():
-	# 💡 新增：如果當前狀態還沒完成 (例如揮刀或翻滾中)，就先不要切換
-	if state and not state.is_complete:
-		return
-
 	# 防禦性程式設計：如果狀態抓不到，直接放棄思考避免遊戲當機
-	if idle_state == null or walk_state == null or melee_state == null:
+	if idle_state == null or walk_state == null or melee_state == null or roll_state == null:
 		return
 	
 	if state == melee_state:

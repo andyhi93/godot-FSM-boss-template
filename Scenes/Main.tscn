@@ -8,8 +8,10 @@
 [node name="Player" parent="." unique_id=1932012002 instance=ExtResource("2_kln2b")]
 position = Vector2(715, 356)
 slash_scale = Vector2(2, 4)
+lock_movement_on_melee = true
 
 [node name="Boss" parent="." unique_id=1474349574 instance=ExtResource("1_idj7w")]
 position = Vector2(376, 103)
 close_mid_range = 350.0
 mid_far_range = 800.0
+debug_font_dst = Vector2(0, -200)
