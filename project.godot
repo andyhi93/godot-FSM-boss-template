@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 UIManager="*uid://bxb8wh1o6hpqj"
+ScreenShake="*res://Scripts/ScreenShake.gd"
+HitStop="*res://Scripts/HitStop.gd"
 
 [display]
 

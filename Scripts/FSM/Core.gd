@@ -69,9 +69,29 @@ func init_behavior(): pass
 func select_state(): pass
 
 # --- 戰鬥基礎 ---
+func get_visual() -> Node2D:
+	var visual = get_node_or_null("AnimatedSprite2D")
+	if visual == null:
+		visual = get_node_or_null("Sprite2D")
+	return visual
+
+func flash(color: Color, duration: float = 0.15):
+	var visual = get_visual()
+	if visual:
+		var original_color = visual.modulate
+		visual.modulate = color
+		var tween = create_tween()
+		tween.tween_property(visual, "modulate", original_color, duration)
+
+func on_hit():
+	# 留給學員填寫果汁函式 (Juice Functions)
+	pass
+
 func take_damage(damage: int):
 	if is_dead or is_invincible: return
 	current_hp = clampi(current_hp - damage, 0, max_hp)
+	
+	on_hit()
 	
 	if is_in_group("Player"):
 		UIManager.update_player_hp(current_hp, max_hp)

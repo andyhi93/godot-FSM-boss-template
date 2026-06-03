@@ -1,0 +1,48 @@
+diff --git a/Scripts/FSM/Core.gd b/Scripts/FSM/Core.gd
+index 1d72222..aeff4ac 100644
+--- a/Scripts/FSM/Core.gd
++++ b/Scripts/FSM/Core.gd
+@@ -69,10 +69,30 @@ func init_behavior(): pass
+ func select_state(): pass
+ 
+ # --- 戰鬥基礎 ---
++func get_visual() -> Node2D:
++	var visual = get_node_or_null("AnimatedSprite2D")
++	if visual == null:
++		visual = get_node_or_null("Sprite2D")
++	return visual
++
++func flash(color: Color, duration: float = 0.15):
++	var visual = get_visual()
++	if visual:
++		var original_color = visual.modulate
++		visual.modulate = color
++		var tween = create_tween()
++		tween.tween_property(visual, "modulate", original_color, duration)
++
++func on_hit():
++	# 留給學員填寫果汁函式 (Juice Functions)
++	pass
++
+ func take_damage(damage: int):
+ 	if is_dead or is_invincible: return
+ 	current_hp = clampi(current_hp - damage, 0, max_hp)
+ 	
++	on_hit()
++	
+ 	if is_in_group("Player"):
+ 		UIManager.update_player_hp(current_hp, max_hp)
+ 	elif is_in_group("Enemy"):
+diff --git a/project.godot b/project.godot
+index 66ab182..9e72773 100644
+--- a/project.godot
++++ b/project.godot
+@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
+ [autoload]
+ 
+ UIManager="*uid://bxb8wh1o6hpqj"
++ScreenShake="*res://Scripts/ScreenShake.gd"
++HitStop="*res://Scripts/HitStop.gd"
+ 
+ [display]
+ 
