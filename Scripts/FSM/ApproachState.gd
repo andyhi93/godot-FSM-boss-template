@@ -1,6 +1,7 @@
-extends State
+extends CommonState
 
-@export var speed: float = 20.0
+@export var speed: float = 200.0
+
 var dash_direction: Vector2 = Vector2.ZERO
 
 func enter():

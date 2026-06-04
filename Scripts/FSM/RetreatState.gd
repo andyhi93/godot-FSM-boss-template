@@ -1,4 +1,4 @@
-extends State
+extends CommonState
 
 @export var retreat_duration: float = 0.4   # 後撤跳躍的時間 (通常比衝刺短，講求俐落)
 @export var retreat_distance: float = 250.0 # 要往後跳多遠

@@ -1,6 +1,7 @@
-extends State
+extends CommonState
 
-@export var flank_speed: float = 250.0
+@export var flank_speed: float = 300.0
+
 @export var target_distance: float = 150.0 # Boss 想要保持的繞圈半徑
 @export var duration: float = 3.0          # 迂迴要持續幾秒
 var orbit_direction: int = 1               # 1 = 順時針, -1 = 逆時針

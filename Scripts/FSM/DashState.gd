@@ -1,4 +1,4 @@
-extends State
+extends CommonState
 
 @export var windup_time: float = 1.0 #蓄力階段
 @export var dash_duration: float = 0.5 #衝刺時間長度

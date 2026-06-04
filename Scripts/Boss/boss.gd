@@ -75,6 +75,11 @@ func _physics_process(delta):
 		if current_cooldowns[skill] > 0.0:
 			current_cooldowns[skill] = max(0.0, current_cooldowns[skill] - delta)
 
+	# 💡 自動翻轉邏輯：根據移動方向 (velocity) 自動轉頭
+	var visual = get_visual()
+	if visual and velocity.x != 0:
+		visual.flip_h = velocity.x < 0
+
 	super._physics_process(delta) 
 
 # --- 🧠 大腦決策區：集中管理所有狀態切換 ---
