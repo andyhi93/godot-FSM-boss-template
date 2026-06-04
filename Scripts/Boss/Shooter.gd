@@ -11,7 +11,7 @@ func fire_ring(bullet_count: int, bullet_speed: float):
 	
 	for i in range(bullet_count):
 		var bullet = bullet_scene.instantiate()
-		get_tree().root.add_child(bullet)
+		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = global_position
 		bullet.rotation = i * angle_step
 		bullet.speed = bullet_speed

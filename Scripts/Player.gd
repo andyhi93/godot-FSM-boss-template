@@ -115,7 +115,7 @@ func shoot():
 		
 	fire_timer = fire_rate
 	var bullet = bullet_scene.instantiate()
-	get_tree().root.add_child(bullet)
+	get_tree().current_scene.add_child(bullet)
 	
 	# 💡 防呆報錯 4：槍口節點遺失
 	if muzzle:
