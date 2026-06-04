@@ -514,9 +514,9 @@ auto_complete = false
 
 [node name="Shoot" type="Node2D" parent="States" unique_id=1472722649]
 script = ExtResource("7_odcco")
+fire_frame = -3
 anim_name = "Idle"
 is_cycle = false
-auto_complete = false
 
 [node name="Melee" type="Node2D" parent="States" unique_id=990740958]
 script = ExtResource("9_odcco")
