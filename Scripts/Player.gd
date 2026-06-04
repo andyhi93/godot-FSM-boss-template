@@ -10,6 +10,7 @@ var fire_timer: float = 0.0
 @onready var weapon_pivot = $WeaponPivot
 @onready var gun_sprite = $WeaponPivot/GunSprite
 @onready var muzzle = $WeaponPivot/GunSprite/Muzzle
+@onready var boss_pointer = get_node_or_null("BossPointer") # 假設節點叫 BossPointer
 
 #近戰相關與硬直開關
 @export var slash_scene: PackedScene
@@ -50,6 +51,15 @@ func _process(delta):
 		gun_sprite.flip_v = mouse_pos.x < weapon_pivot.global_position.x
 	else:
 		push_warning("⚠️ 警告：找不到武器節點 (WeaponPivot 或 GunSprite)，請檢查節點結構！")
+	
+	# 💡 指向 Boss 的邏輯
+	if boss_pointer:
+		var boss = get_tree().get_first_node_in_group("Enemy")
+		if is_instance_valid(boss):
+			boss_pointer.show()
+			boss_pointer.look_at(boss.global_position)
+		else:
+			boss_pointer.hide()
 	
 	fire_timer -= delta
 	if Input.is_action_pressed("shoot") and fire_timer <= 0.0:
@@ -163,7 +173,6 @@ func die():
 func take_damage(damage: int):
 	# 1. 檢查是否已經死亡或處於無敵狀態
 	if is_dead or is_invincible: return
-	
 	# 2. 呼叫老爸 (Core) 的扣血邏輯
 	super.take_damage(damage)
 	

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dn28y6nwb3wsr" path="res://Scenes/PlayerSlash.tscn" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://ceao7yl4jy6cw" path="res://Resources/sprites/weapons.png" id="5_3smsa"]
 [ext_resource type="Script" uid="uid://cxvwsfm4deo6f" path="res://Scripts/FSM/CommonState.gd" id="5_fkybt"]
+[ext_resource type="Texture2D" uid="uid://bhktqvcd0nv5h" path="res://Resources/sprites/bullets_fullsheet.png" id="6_8erm5"]
 [ext_resource type="Script" uid="uid://ccnhrp3g5msyd" path="res://Scripts/FSM/RollState.gd" id="7_3smsa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
@@ -269,6 +270,15 @@ frame_progress = 0.43600327
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=980795682]
 shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="BossPointer" type="Node2D" parent="." unique_id=349853174]
+
+[node name="Sprite" type="Sprite2D" parent="BossPointer" unique_id=948227292]
+position = Vector2(163, 0)
+rotation = 1.5707964
+texture = ExtResource("6_8erm5")
+region_enabled = true
+region_rect = Rect2(0, 30, 20, 30)
 
 [node name="WeaponPivot" type="Node2D" parent="." unique_id=140887226]
 

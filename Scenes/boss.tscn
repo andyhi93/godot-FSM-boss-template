@@ -450,6 +450,12 @@ max_cooldowns = {
 "shoot": 6.0
 }
 
+[node name="DashIndicator" type="Line2D" parent="." unique_id=1097894761]
+visible = false
+modulate = Color(0.8848981, 0, 0, 0.49411765)
+points = PackedVector2Array(0, 0, 100, 0)
+width = 200.0
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1629454165]
 position = Vector2(0, -71)
 scale = Vector2(8, 8)
@@ -506,6 +512,7 @@ auto_complete = false
 script = ExtResource("5_n725y")
 windup_time = 0.5
 dash_duration = 2.0
+minimum_dist = null
 overshoot_offset = 300.0
 dash_curve = SubResource("Curve_hbq6j")
 anim_name = "Dash"
