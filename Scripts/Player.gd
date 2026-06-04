@@ -112,6 +112,8 @@ func shoot():
 	if bullet_scene == null: 
 		push_error("🚨 錯誤：玩家沒有裝備子彈！請點擊 Player 節點，去右邊 Inspector 把 Bullet Scene 拖進去。")
 		return
+	
+	AudioManager.play_sfx("Shoot")
 		
 	fire_timer = fire_rate
 	var bullet = bullet_scene.instantiate()

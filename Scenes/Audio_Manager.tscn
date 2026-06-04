@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cr5kyd2bglj1c"]
+
+[ext_resource type="Script" uid="uid://83qmjujyq881" path="res://Scripts/AudioManager.gd" id="1_64mmg"]
+[ext_resource type="Script" uid="uid://tbiitu1i3u0l" path="res://Scripts/AudioEntry.gd" id="2_v00ql"]
+[ext_resource type="AudioStream" uid="uid://70hokyojes00" path="res://Resources/sounds/laserShoot.wav" id="3_cm8oc"]
+
+[sub_resource type="Resource" id="Resource_50glp"]
+script = ExtResource("2_v00ql")
+name = "Shoot"
+stream = ExtResource("3_cm8oc")
+pitch_min = 0.5
+pitch_max = 2.0
+pitch_steps = 3
+pitch_random = false
+metadata/_custom_type_script = "uid://tbiitu1i3u0l"
+
+[node name="AudioManager" type="Node2D" unique_id=1451914032]
+script = ExtResource("1_64mmg")
+sfx_list = Array[ExtResource("2_v00ql")]([SubResource("Resource_50glp")])
