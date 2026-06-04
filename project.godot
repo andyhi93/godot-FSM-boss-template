@@ -21,6 +21,7 @@ UIManager="*uid://bxb8wh1o6hpqj"
 ScreenShake="*res://Scripts/ScreenShake.gd"
 HitStop="*res://Scripts/HitStop.gd"
 AudioManager="*uid://cr5kyd2bglj1c"
+CameraManager="*uid://hkgx48n2htjf"
 
 [display]
 
